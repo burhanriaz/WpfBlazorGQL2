@@ -1,0 +1,5 @@
+﻿mutation CreateCake($newCake:CakeInput!){
+  saveCake(newCake:$newCake) {
+    id
+  }
+}

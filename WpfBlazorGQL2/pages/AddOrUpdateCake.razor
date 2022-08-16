@@ -1,0 +1,39 @@
+﻿@using WpfBlazorGQL2.Dtos
+@using Microsoft.Extensions.Logging
+@inject  CakeGqlSchema.CakeGqlClient _cakeGql;
+
+    <EditForm Model="@cake">
+
+    <input @bind="@cake.Name" />
+    <input id="Description" @bind="@cake.Description" />
+    <input id="Price" @bind="@cake.Price" />
+    
+    <button type="submit" @onclick="Submit">Submit</button>
+</EditForm>
+
+@code {
+ 
+    //[Parameter] 
+	public CakeDto cake { get; set; }  = new CakeDto();
+	
+	private  async Task  Submit()
+    {
+        if (cake != null)
+	{
+		CakeDto newCake = new  CakeDto();
+ 
+		var gqlPayload = new CakeInput()
+		{
+			Description = cake.Description,
+			Id =0,
+			Name = cake.Name,
+			Price = cake.Price
+		};
+ 
+		var result = await _cakeGql.CreateCake.ExecuteAsync(gqlPayload);
+		cake.Id = result.Data.SaveCake.Id;
+ List<CakeDto> allCakes = new List<CakeDto>();
+		allCakes.Insert(0, cake);
+	}
+    }
+}

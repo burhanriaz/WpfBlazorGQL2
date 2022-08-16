@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net6.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWPF>true</UseWPF>
+	</PropertyGroup>
+	<PropertyGroup>
+		<RootNameSpace>WpfBlazorGQL2</RootNameSpace>
+	</PropertyGroup>
+	<ItemGroup>
+	  <GraphQL Remove="CakeGqlSchema\GetAllCakes.graphql" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Remove="CakeGqlSchema\GetAllCakes.graphql" />
+	</ItemGroup>
+	<ItemGroup>
+	  <GraphQLConfig Include="CakeGqlSchema\GetAllCakes.graphql" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="6.0.486" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="6.0.486" />
+		<!--<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />-->
+		<PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
+		<!--<PackageReference Include="StrawberryShake.CodeGeneration.CSharp.Analyzers" Version="12.12.1" />-->
+		<PackageReference Include="StrawberryShake.Transport.Http" Version="12.12.1" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="CakeGqlSchema\Generated\" />
+	</ItemGroup>
+
+</Project>

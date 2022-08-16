@@ -1,0 +1,26 @@
+﻿@using WpfBlazorGQL2.Dtos;
+@inject  CakeGqlSchema.CakeGqlClient _cakeGql;
+<h1> @j </h1>
+@foreach (var cake in allCakes)
+{
+        <div class="container">
+            <h4><b>@cake.Id</b></h4>
+            <p>@cake.Name</p>
+            <p>@cake.Description</p>
+    </div>
+}
+@code {
+    List<CakeDto> allCakes = new List<CakeDto>();
+    int j = 10;
+    protected override async Task OnInitializedAsync()
+    {
+        var result = await _cakeGql.GetAllCakes.ExecuteAsync();
+        allCakes =  result.Data.AllCakes.Select(c => new CakeDto
+        {
+            Description = c.Description,
+            Id = c.Id,
+            Name = c.Name,
+         // Price = c.Price
+        }).ToList();
+    }
+}

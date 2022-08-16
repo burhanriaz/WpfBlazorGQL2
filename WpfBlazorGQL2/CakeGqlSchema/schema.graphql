@@ -1,0 +1,31 @@
+﻿schema {
+  query: QueryType
+  mutation: MutationsType
+}
+
+type QueryType {
+  allCakes: [Cake!]!
+}
+
+type MutationsType {
+  saveCake(newCake: CakeInput!): Cake!
+  updateCake(updateCake: CakeInput!): Cake!
+  deleteCake(id: Int!): String!
+}
+
+input CakeInput {
+  id: Int!
+  name: String!
+  price: Decimal!
+  description: String!
+}
+
+type Cake {
+  id: Int!
+  name: String!
+  price: Decimal!
+  description: String!
+}
+
+"The built-in `Decimal` scalar type."
+scalar Decimal
